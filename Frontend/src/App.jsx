@@ -9,6 +9,7 @@ import { addFilesToReview, MAX_FILE_BYTES, MAX_FILES, MAX_TOTAL_BYTES } from './
 import './App.css'
 
 const severityOrder = ['critical', 'high', 'medium', 'low', 'info']
+const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '')
 const languageExtensions = { javascript: 'js', typescript: 'ts', python: 'py', java: 'java', csharp: 'cs', go: 'go', ruby: 'rb', php: 'php', rust: 'rs', cpp: 'cpp', sql: 'sql' }
 const DEFAULT_CODE = `function sum() {
   return 1 + 1
@@ -41,7 +42,7 @@ function App() {
     }
     dispatchReview({ type: 'start' })
     try {
-      const response = await axios.post('/ai/get-review', { files, ...options }, { timeout: 95_000 })
+      const response = await axios.post(`${API_BASE_URL}/ai/get-review`, { files, ...options }, { timeout: 95_000 })
       dispatchReview({ type: 'success', review: response.data })
     } catch (requestError) {
       dispatchReview({ type: 'failure', message: reviewErrorMessage(requestError) })
