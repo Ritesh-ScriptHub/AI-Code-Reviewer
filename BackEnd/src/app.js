@@ -5,7 +5,17 @@ const createReviewRateLimiter = require('./middleware/review-rate-limit')
 
 const app = express()
 
-app.use(cors())
+const allowedOrigins = ['http://localhost:5173', ...(process.env.FRONTEND_ORIGIN || '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean)]
+
+app.use(cors({
+    origin(origin, callback) {
+        // Allow non-browser clients and the configured frontend origins.
+        callback(null, !origin || allowedOrigins.includes(origin))
+    },
+}))
 
 
 app.use('/ai/get-review', createReviewRateLimiter({ limit: 10, windowMs: 60_000 }))
