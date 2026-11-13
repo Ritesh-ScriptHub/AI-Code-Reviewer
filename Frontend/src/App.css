@@ -1,0 +1,308 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+main .left,
+main .right {
+  height: 100%;
+  flex-basis: 50%;
+  border-radius: 0.7rem;
+}
+
+main .left {
+  background-color: #000000;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.left .code,
+.code pre,
+.code pre code {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border-radius: 0.7rem;
+  background-color: #0c0c0c;
+}
+
+.left .code {
+  min-height: 0;
+  flex: 1;
+}
+
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding: 0.8rem;
+  background: #111;
+}
+
+.editor-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #ccc;
+  font-size: 0.75rem;
+}
+
+.editor-toolbar select {
+  max-width: 8rem;
+  padding: 0.35rem;
+  border: 1px solid #555;
+  border-radius: 0.35rem;
+  color: #eee;
+  background: #252525;
+}
+
+.reset-button {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #555;
+  color: #ddd;
+  background: #252525;
+  font-size: 0.75rem;
+}
+
+.upload-button {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #555;
+  border-radius: 0.35rem;
+  color: #eee;
+  background: #252525;
+  cursor: pointer;
+}
+
+.upload-button input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.uploaded-files {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  color: #ccc;
+  background: #171717;
+  font-size: 0.72rem;
+}
+
+.file-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 1rem;
+  background: #303030;
+}
+
+.file-chip button {
+  padding: 0 0.2rem;
+  color: #ddd;
+  background: transparent;
+  font-size: 1rem;
+}
+
+.upload-error {
+  padding: 0.25rem 0.75rem;
+  color: #ff9b9b;
+  background: #171717;
+  font-size: 0.75rem;
+}
+
+main .left .review {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgb(219, 219, 255);
+  color: #000000;
+  padding: 0.5rem 2rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 0.7rem;
+}
+
+main .left .review:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.shortcut-hint {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1rem;
+  color: #aaa;
+  font-size: 0.72rem;
+  pointer-events: none;
+}
+
+
+main .right {
+  background-color: #343434;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  overflow: auto;
+}
+
+.error {
+  color: #ff9b9b;
+}
+
+.placeholder {
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.review-summary {
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+}
+
+.severity-group {
+  margin: 1.25rem 0;
+}
+
+.severity-group h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.severity-dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: #8da0b3;
+}
+
+.severity-dot.critical,
+.severity-dot.high { background: #ff7777; }
+.severity-dot.medium { background: #ffc66d; }
+.severity-dot.low { background: #72c8ff; }
+.severity-dot.info { background: #aaa; }
+
+.finding-count,
+.finding-location {
+  color: #aaa;
+  font-size: 0.8rem;
+}
+
+.finding {
+  margin: 0.65rem 0;
+  padding: 0.9rem;
+  border: 1px solid #515151;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.finding h3 { margin: 0.3rem 0 0.55rem; font-size: 1rem; }
+.finding p { margin: 0.45rem 0; }
+
+.patch-block {
+  position: relative;
+  margin-top: 0.7rem;
+}
+
+.patch-block pre {
+  overflow-x: auto;
+  padding: 0.8rem;
+  padding-right: 7rem;
+  border-radius: 0.35rem;
+  background: #171717;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+}
+
+.patch-block button {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  padding: 0.35rem 0.55rem;
+  color: #111;
+  background: #dbdbff;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 760px) {
+  html,
+  body,
+  #root {
+    height: auto;
+    min-height: 100%;
+  }
+
+  body {
+    display: block;
+    min-width: 320px;
+  }
+
+  main {
+    height: auto;
+    min-height: 100vh;
+    flex-direction: column;
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  main .left,
+  main .right {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  main .left {
+    min-height: 60vh;
+  }
+
+  main .right {
+    min-height: 30vh;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .editor-toolbar {
+    gap: 0.45rem;
+    padding: 0.6rem;
+  }
+
+  .editor-toolbar label {
+    flex-wrap: wrap;
+  }
+
+  .shortcut-hint {
+    bottom: 1.25rem;
+    left: 0.65rem;
+    font-size: 0.65rem;
+  }
+
+  main .left .review {
+    right: 0.65rem;
+    padding: 0.5rem 1rem;
+  }
+}
